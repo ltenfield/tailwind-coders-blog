@@ -25,6 +25,7 @@ import rehypePresetMinify from 'rehype-preset-minify'
 import siteMetadata from './data/siteMetadata'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 import prettier from 'prettier'
+import rehypeExpressiveCode from 'rehype-expressive-code'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
@@ -175,7 +176,8 @@ export default makeSource({
       rehypeKatex,
       rehypeKatexNoTranslate,
       [rehypeCitation, { path: path.join(root, 'data') }],
-      [rehypePrismPlus, { defaultLanguage: 'js', ignoreMissing: true }],
+      //[rehypePrismPlus, { defaultLanguage: 'js', ignoreMissing: true }],
+      rehypeExpressiveCode,
       rehypePresetMinify,
     ],
   },

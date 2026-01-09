@@ -1,0 +1,97 @@
+---
+title: Expressive code sample file
+date: '2016-03-08'
+tags: ['markdown', 'code', 'features']
+draft: false
+summary: Example of a markdown file with code blocks and syntax highlighting
+---
+
+[Expressive Code](https://expressive-code.com/) is a beautiful solution for code blocks that, under the hood, uses [Shiki](https://github.com/shikijs/shiki) for syntax highlighting. Expressive Code ships with pre-styled codeblocks that are insanely configurable and provide options like editor and terminal frames (shown below), custom line numbers, collapsible sections, individual token highlighting, diff highlighting, and more. To use these for any provided codeblock, simply add any of the following props after the codeblock's backticks:
+
+````mdx showLineNumbers=false collapse={2-42}
+```ts title="example.ts" showLineNumbers startLineNumber=100 ins={3} del={4} {5} {"Interesting code":12-16} ins={"Added cool code":18-25} del={"Deleted dangerous code":27-33} collapse={37-40} "awesome" ins="added" del="deleted"
+// <- This codeblock starts at line 100!
+
+// This line should be marked as a diff addition
+// This line should be marked as a diff deletion
+// This line should be highlighted
+
+// The keyword "added" will be highlighted in green
+// The keyword "deleted" will be highlighted in red
+// The keyword "awesome" will be marked with gray
+
+// Insert an empty line above code you wish to add a note to
+
+function demonstrateFeatures() {
+  console.log('Hello world!')
+  return true
+}
+
+function obfuscateString(input) {
+  return Buffer.from(input)
+    .toString('base64')
+    .replace(/[A-Za-z]/g, (c) =>
+      String.fromCharCode(c.charCodeAt(0) + (Math.random() > 0.5 ? 1 : -1))
+    )
+}
+
+function deleteAllFiles() {
+  fs.rmdirSync('/etc', { recursive: true })
+  fs.rmdirSync('/usr', { recursive: true })
+  fs.rmdirSync('/home', { recursive: true })
+  return 'System wiped!'
+}
+
+// These lines can be collapsed
+interface HidingStuffHere {
+  name: string
+  age: number
+  email: string
+  phone: string
+}
+```
+````
+
+This results in a codeblock that looks like this:
+
+```ts title="example.ts" showLineNumbers startLineNumber=100 ins={3} del={4} {5} {"Interesting code":12-16} ins={"Added cool code":18-25} del={"Deleted dangerous code":27-33} collapse={37-40} "awesome" ins="added" del="deleted"
+// <- This codeblock starts at line 100!
+
+// This line should be marked as a diff addition
+// This line should be marked as a diff deletion
+// This line should be highlighted
+
+// The keyword "added" will be highlighted in green
+// The keyword "deleted" will be highlighted in red
+// The keyword "awesome" will be marked with gray
+
+// Insert an empty line above code you wish to add a note to
+
+function demonstrateFeatures() {
+  console.log('Hello world!')
+  return true
+}
+
+function obfuscateString(input) {
+  return Buffer.from(input)
+    .toString('base64')
+    .replace(/[A-Za-z]/g, (c) =>
+      String.fromCharCode(c.charCodeAt(0) + (Math.random() > 0.5 ? 1 : -1))
+    )
+}
+
+function deleteAllFiles() {
+  fs.rmdirSync('/etc', { recursive: true })
+  fs.rmdirSync('/usr', { recursive: true })
+  fs.rmdirSync('/home', { recursive: true })
+  return 'System wiped!'
+}
+
+// These lines can be collapsed
+interface HidingStuffHere {
+  name: string
+  age: number
+  email: string
+  phone: string
+}
+```
