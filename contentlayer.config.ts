@@ -26,7 +26,7 @@ import siteMetadata from './data/siteMetadata'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 import prettier from 'prettier'
 import rehypeExpressiveCode from 'rehype-expressive-code'
-
+import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -148,6 +148,15 @@ export const Authors = defineDocumentType(() => ({
   computedFields,
 }))
 
+const expressiveCodeOptions = {
+  themes: ['dracula', 'github-light'],
+  styleOverrides: {
+    borderRadius: '0.5rem',
+  },
+  plugins: [pluginCollapsibleSections()],
+  useDarkModeMediaQuery: true,
+}
+
 export default makeSource({
   contentDirPath: 'data',
   documentTypes: [Blog, Authors],
@@ -177,7 +186,8 @@ export default makeSource({
       rehypeKatexNoTranslate,
       [rehypeCitation, { path: path.join(root, 'data') }],
       //[rehypePrismPlus, { defaultLanguage: 'js', ignoreMissing: true }],
-      rehypeExpressiveCode,
+      //rehypeExpressiveCode,
+      [rehypeExpressiveCode, expressiveCodeOptions],
       rehypePresetMinify,
     ],
   },
