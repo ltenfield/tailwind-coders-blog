@@ -10,7 +10,9 @@ export const components: MDXComponents = {
   Image,
   TOCInline,
   a: CustomLink,
-  pre: Pre,
+  // Pre removed to remove dynamic code button from spline
+  // and let expressive-code hover copy button take over
+  //pre: Pre,
   table: TableWrapper,
   BlogNewsletterForm,
 }

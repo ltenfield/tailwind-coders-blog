@@ -20,13 +20,17 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeKatex from 'rehype-katex'
 import rehypeKatexNoTranslate from 'rehype-katex-notranslate'
 import rehypeCitation from 'rehype-citation'
-import rehypePrismPlus from 'rehype-prism-plus'
+// import rehypePrismPlus from 'rehype-prism-plus'
 import rehypePresetMinify from 'rehype-preset-minify'
 import siteMetadata from './data/siteMetadata'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 import prettier from 'prettier'
-import rehypeExpressiveCode from 'rehype-expressive-code'
+import rehypeExpressiveCode, {
+  ExpressiveCodeEngineConfig,
+  ExpressiveCodeTheme,
+} from 'rehype-expressive-code'
 import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -149,12 +153,20 @@ export const Authors = defineDocumentType(() => ({
 }))
 
 const expressiveCodeOptions = {
-  themes: ['dracula', 'github-light'],
+  themes: ['github-dark'],
   styleOverrides: {
     borderRadius: '0.5rem',
   },
-  plugins: [pluginCollapsibleSections()],
-  useDarkModeMediaQuery: true,
+  plugins: [pluginCollapsibleSections(), pluginLineNumbers()],
+  useDarkModeMediaQuery: false,
+  defaultProps: {
+    wrap: false,
+    collapseStyle: 'collapsible-auto',
+    showLineNumbers: true,
+  },
+  frames: {
+    showCopyToClipboardButton: true,
+  },
 }
 
 export default makeSource({
@@ -186,7 +198,7 @@ export default makeSource({
       rehypeKatexNoTranslate,
       [rehypeCitation, { path: path.join(root, 'data') }],
       //[rehypePrismPlus, { defaultLanguage: 'js', ignoreMissing: true }],
-      //rehypeExpressiveCode,
+      // removed rehypePrismPlus and replaced with expressive code hilighter
       [rehypeExpressiveCode, expressiveCodeOptions],
       rehypePresetMinify,
     ],
