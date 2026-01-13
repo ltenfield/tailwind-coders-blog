@@ -6,7 +6,7 @@ const siteMetadata = {
   description: 'A blog created with Next.js Tailwind.css',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://ltenfield.github.io',
+  siteUrl: 'https://ltenfield.github.io/tailwind-coders-blog/',
   siteRepo: 'https://github.com/ltenfield/tailwind-coders-blog.git',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
